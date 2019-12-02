@@ -156,27 +156,37 @@ void loop() {
   range_msg.msg_received = nh.now();
 
   //if current is above or below a certain level, then turn off the motor
-  if (analogRead(analogCurrA1) > 550 || analogRead(analogCurrA1) < 460)
+  int currA1 = analogRead(analogCurrA1); 
+  int currA2 = analogRead(analogCurrA2); 
+  int currB1 = analogRead(analogCurrB1); 
+  int currB2 = analogRead(analogCurrB2); 
+  
+  if (currA1 > 550 || currA1 < 460)
   {
     analogWrite(PWM_OUTA1, MOTOR_OFF);
     m_state++;
   }
-  if (analogRead(analogCurrA2) > 550 || analogRead(analogCurrA2) < 460)
+  if (currA2 > 550 || currA2 < 460)
   {
     analogWrite(PWM_OUTA2, MOTOR_OFF);
     m_state++;
   }
-  if (analogRead(analogCurrB1) > 550 || analogRead(analogCurrB1) < 460)
+  if (currB1 > 550 || currB1 < 460)
   {
     analogWrite(PWM_OUTB1, MOTOR_OFF);
     m_state++;
   }
-  if (analogRead(analogCurrB2) > 550 || analogRead(analogCurrB2) < 460)
+  if (currB2 > 550 || currB2 < 460)
   {
     analogWrite(PWM_OUTB2, MOTOR_OFF);
     m_state++;
   }
 
+  range_msg.curr1 = currA1; 
+  range_msg.curr2 = currA2;
+  range_msg.curr3 = currB1;
+  range_msg.curr4 = currB2; 
+  
   range_msg.motor_status = 1 ? m_state > 1 : 0;
   range_pub.publish(&range_msg);
 
