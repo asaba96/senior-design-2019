@@ -1,0 +1,35 @@
+<launch>
+  
+  <arg name="robot_name" default="uav1" />
+  <arg name="drone_interface" value="DJIInterface" />
+  
+  <group ns="$(arg robot_name)">
+    <node pkg="dji_sdk" type="dji_sdk_node" name="dji_sdk" output="screen">
+      <param name="serial_name" type="string" value="/dev/ttyUSB1"/>
+      <param name="baud_rate" type="int" value="921600"/>
+      <param name="app_id" type="int" value="1082193"/>
+      <param name="app_version" type="int" value="1"/>
+      <param name="align_time" type="bool" value="false"/>
+      <param name="enc_key" type="string" value="0fcfa7e9757fdb070513f7d85be6386d373ea91a68f666d17d8dba49ce1ee45a"/>
+      <param name="use_broadcast" type="bool" value="false"/>
+    </node>
+    
+
+    <!-- state estimation -->
+    <include file="$(find core_central)/launch/dji/sim/dji_sim_state_estimation.launch" pass_all_args="true"/>
+
+    <!-- control -->
+    <include file="$(find core_central)/launch/dji/sim/dji_sim_control.launch" pass_all_args="true" />
+
+    <!-- autonomy -->
+    <include file="$(find core_central)/launch/common/autonomy.launch" pass_all_args="true"/>
+
+    <!-- visualization -->
+    <include file="$(find core_central)/launch/common/visualization.launch" pass_all_args="true"/>
+
+    <!-- logging -->
+    <node name="record" pkg="rosbag" type="record" args="-a -o ~/bags/dji" />
+
+  </group>
+  
+</launch>

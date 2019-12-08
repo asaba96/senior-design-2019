@@ -1,0 +1,11 @@
+<launch>
+    <arg name="world_name" default="basic"/>
+
+    <include file="$(find mbz2020_common)/launch/rotors.launch">
+        <arg name="world_name" value="$(arg world_name)"/>
+    </include>
+
+    <node name="rotors_interface"
+          pkg="mbz2020_simulation"
+          type="rotors_interface.py"/>
+</launch>

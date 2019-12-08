@@ -1,0 +1,14 @@
+<launch>
+    <node pkg="mbz2020_target_planners" type="target_odom.py" name="target_odom">
+        </node>
+
+    <include file="$(find mbz2020_common)/launch/sim.launch">
+    </include>
+
+    <include file="$(find mbz2020_target_planners)/launch/nonlinear_planner.launch">
+    </include>
+   
+    <include file="$(find mbz2020_target_planners)/launch/task_server.launch">
+    </include>
+
+</launch>

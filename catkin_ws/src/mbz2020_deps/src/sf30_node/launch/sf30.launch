@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>   
+    <!-- Start sf30_node --> 
+    <node name="sf30_node" ns="sf30" pkg="sf30_node" type="sf30_node" output="screen">
+        <param name="portname" type="string" value="/dev/ttyUSB0" />
+        <param name="topic_name" type="string" value="range" />
+        <param name="frame_id" type="string" value="sf30" />
+        <param name="publish_as_pose" type="bool" value="true" />
+        <param name="debug" type="bool" value="false" />
+        <param name="update_rate" type="int" value="50" />
+        <param name="altitude_variance" type="double" value="0.09" /> 
+    </node>
+</launch>

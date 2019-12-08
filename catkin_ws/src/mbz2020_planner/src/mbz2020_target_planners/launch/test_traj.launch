@@ -1,0 +1,22 @@
+<launch>
+
+	<!-- default example from RotorS -->
+	<!--
+	<include file='$(find rotors_gazebo)/launch/mav_hovering_example.launch'>
+		<arg name='mav_name' value='firefly' />
+		<arg name='world_name' value='basic' />
+		<arg name='paused' value='true' />
+	</include>
+	-->
+
+	<!-- modified example from RotorS -->
+	<include file='$(find mbz2020_common)/launch/takeoff.launch'>
+		<arg name='mav_name' value='firefly' />
+		<arg name='world_name' value='basic' />
+		<arg name='paused' value='true' />
+	</include>
+
+	<!-- run my raster scanner node -->
+	<node pkg='mbz2020_planner' name='raster_planner' type='raster_planner.py' />
+
+</launch>

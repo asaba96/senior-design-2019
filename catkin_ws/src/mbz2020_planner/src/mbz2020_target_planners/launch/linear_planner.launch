@@ -1,0 +1,6 @@
+<launch>
+    <node name="trajectory_generator_linear"
+        pkg="mbz2020_target_planners"
+        type="trajectory_generator_linear" output="screen">
+    </node>
+</launch>

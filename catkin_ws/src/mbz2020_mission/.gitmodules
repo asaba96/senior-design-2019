@@ -1,0 +1,6 @@
+[submodule "ci/ci_jenkins"]
+	path = ci/ci_jenkins
+	url = git@bitbucket.org:cmusubt/ci_jenkins.git
+[submodule "ci/ci_phase"]
+	path = ci/ci_phase
+	url = git@bitbucket.org:cmusubt/ci_phase.git
