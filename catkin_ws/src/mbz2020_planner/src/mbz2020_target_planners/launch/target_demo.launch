@@ -1,0 +1,13 @@
+<launch>
+    <param name="eps" value="2.5"/>
+
+    <param name="check_obstacles" value="false"/>
+
+    <node pkg="mbz2020_planner" type="fake_obstacles.py" name="fake_obstacles">
+        </node>
+
+
+    <node pkg="mbz2020_planner" type="catch_demo" name="target_demo">
+        </node>
+
+</launch>

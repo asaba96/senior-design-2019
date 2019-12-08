@@ -1,0 +1,6 @@
+build
+devel
+logs
+.catkin_tools
+*.swp
+.ycm_extra_conf.py

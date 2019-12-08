@@ -49,3 +49,18 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+
+# YCM files 
+*ycm*
+
+# catkin tools
+.catkin_tools*
+
+# vim
+*.swp*
+
+# bag files
+*.bag
+
+# catking workspace 
+*.catkin_workspace

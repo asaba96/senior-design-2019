@@ -1,0 +1,15 @@
+<launch>
+    <arg name="platform" default="rams_indoor" doc="string representing the platform" />
+
+    <include file="$(find mbz2020_common)/launch/base_hardware.launch">
+    </include>
+
+    <include file="$(find mbz2020_common)/launch/localization.launch" >
+        <arg name="platform" value="$(arg platform)" />
+    </include>
+
+    <node name="map_odom_to_pose" pkg="mbz2020_common" type="map_odom_to_pose.py"/>
+
+    <node name="waypoint_mission" pkg="mbz2020_mission" type="waypoints.py"/>
+
+</launch>

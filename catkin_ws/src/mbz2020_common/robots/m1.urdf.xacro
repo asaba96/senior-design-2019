@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="greased_lightning">
+    <link name="uav1/base_link" />
+    <link name="bottom_depth_camera_link" />
+    <link name="base_footprint" />
+
+    <!-- TODO: Fix this transform -->
+    <joint name="base_link_to_base_footprint" type="fixed">
+        <parent link="uav1/base_link" />
+        <child link="base_footprint" />
+        <origin xyz="0 0 -0.3" />
+    </joint>
+
+    <!-- TODO: Fix this transform -->
+    <joint name="base_link_to_bottom_depth_camera" type="fixed">
+        <parent link="uav1/base_link" />
+        <child link="bottom_depth_camera_link" />
+        <origin xyz=".142 0.0 0.0" rpy="0 -${pi/6} 0"/>
+    </joint>
+</robot>

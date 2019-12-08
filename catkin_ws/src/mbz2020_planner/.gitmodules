@@ -1,0 +1,42 @@
+[submodule "ci/ci_phase"]
+	path = ci/ci_phase
+	url = git@bitbucket.org:cmusubt/ci_phase.git
+[submodule "ci/ci_jenkins"]
+	path = ci/ci_jenkins
+	url = git@bitbucket.org:cmusubt/ci_jenkins.git
+[submodule "src/mbz2020_target_planners"]
+	path = src/mbz2020_target_planners
+	url = git@bitbucket.org:castacks/mbz2020_target_planners.git
+[submodule "src/mbz2020_pickup"]
+	path = src/mbz2020_pickup
+	url = git@bitbucket.org:castacks/mbz2020_pickup.git
+[submodule "src/mbz2020_ibvs"]
+	path = src/mbz2020_ibvs
+	url = git@bitbucket.org:castacks/mbz2020_ibvs.git
+[submodule "src/mbz2020_pn_guidance"]
+	path = src/mbz2020_pn_guidance
+	url = git@bitbucket.org:castacks/mbz2020_pn_guidance.git
+[submodule "src/catkin_simple"]
+	path = src/catkin_simple
+	url = git@github.com:catkin/catkin_simple.git
+[submodule "src/eigen_catkin"]
+	path = src/eigen_catkin
+	url = git@github.com:ethz-asl/eigen_catkin.git
+[submodule "src/eigen_checks"]
+	path = src/eigen_checks
+	url = git@github.com:asaba96/eigen_checks.git
+[submodule "src/mav_comm"]
+	path = src/mav_comm
+	url = git@github.com:ethz-asl/mav_comm.git
+[submodule "src/mav_trajectory_generation"]
+	path = src/mav_trajectory_generation
+	url = git@github.com:asaba96/mav_trajectory_generation.git
+[submodule "src/nlopt"]
+	path = src/nlopt
+	url = git@github.com:ethz-asl/nlopt.git
+[submodule "src/glog_catkin"]
+	path = src/glog_catkin
+	url = git@github.com:ethz-asl/glog_catkin.git
+[submodule "src/robot_motions_server_ros"]
+	path = src/robot_motions_server_ros
+	url = https://github.com/asaba96/robot_motions_server_ros.git

@@ -1,0 +1,7 @@
+<launch>
+
+<node name="takeoff" pkg="mbz2020_common" type="takeoff.py" output="screen" />
+
+<node name="land" pkg="mbz2020_common" type="land.py" output="screen" />
+
+</launch>

@@ -1,0 +1,18 @@
+# sf30 driver
+sf30/sf30_node:
+    portname: "/dev/ttyUSB0"
+    topic_name: "range"
+    frame_id: "sf30"
+    publish_as_pose: true
+    debug: false
+    update_rate: 50
+    altitude_variance: 0.11
+
+# altimeter filter
+altimeter_filter:
+    altimeter_topic: "sf30/range"
+    altimeter_min: .10    # in m
+    altimeter_max: 100.0  # in m
+
+# odometry filter
+odom_filter/odometry_topic: "front_track_camera/odom/sample"

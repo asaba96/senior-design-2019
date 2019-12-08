@@ -1,0 +1,13 @@
+<launch>
+    <arg name="platform" default="rams_indoor" doc="string representing the platform" />
+    <arg name="world_name" default="basic"/>
+
+    <include file="$(find mbz2020_common)/launch/main.launch" >
+        <arg name="platform" value="$(arg platform)"/>
+        <arg name="world_name" value="$(arg world_name)"/>
+    </include>
+
+    <include file="$(find mbz2020_planner)/launch/task_server.launch"/>
+
+    <node name="takeoff_land_mission" pkg="mbz2020_mission" type="takeoff_land.py"/>
+</launch>

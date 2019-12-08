@@ -1,0 +1,34 @@
+<launch>
+    <arg name="platform" default="m1" doc="string representing the platform"/>
+
+    <group if="$(eval str(arg('platform')) == 'm1')" >
+        <include file="$(find mbz2020_common)/launch/transforms.launch">
+            <arg name="platform" value="$(arg platform)"/>
+        </include>
+
+        <include file="$(find realsense2_camera)/launch/rs_camera.launch" />
+
+        <node name="teraranger_node"  pkg="teraranger" type="evo" output="screen">
+            <param name="portname" type="str" value="/dev/ttyACM0" />
+            <param name="sensor_type" type="str" value="Evo_60m" />
+            <param name="frame_id" type="str" value="range_sensor" />
+        </node>
+
+        <node name="serial_node"  pkg="rosserial_python" type="serial_node.py" output="screen">
+            <param name="port" type="str" value="/dev/ttyUSB0" />
+            <param name="baud" type="int" value="115200" />
+        </node>
+    </group>
+
+    <group if="$(eval str(arg('platform')) == 'rams_indoor')" >
+        <node name="sf30_node" ns="sf30" pkg="sf30_node" type="sf30_node" output="screen" />
+
+        <include file="$(find mbz2020_common)/launch/px4.launch" />
+
+        <include file="$(find mbz2020_common)/launch/transforms.launch">
+            <arg name="platform" value="$(arg platform)"/>
+        </include>
+
+        <include file="$(find mbz2020_common)/launch/cameras.launch" />
+    </group>
+</launch>

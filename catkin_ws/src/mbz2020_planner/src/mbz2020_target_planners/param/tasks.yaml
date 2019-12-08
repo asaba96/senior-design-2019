@@ -1,0 +1,56 @@
+odom_topic: '/firefly/odometry_sensor1/odometry'
+
+update_rate: 20 # hz
+
+task_manager:
+    # Resolution to generate linear motion profiles with
+    linear_motion_profile_timestep: 0.020
+    # Default acceleration to use for linear motion profile generation
+    linear_motion_profile_acceleration: 1.0
+    # Maximum acceleration to use for linear motion profile generation
+    linear_motion_profile_max_acceleration: 3.0
+    # Length of time to generate a linear motion profile for
+    linear_motion_profile_duration: 0.2
+
+    takeoff_velocity: 1.0 # m/s
+    takeoff_dt: 0.1 # s
+    takeoff_complete_height: 1.0 # m
+
+    landing_velocity: 1.0 # m/s
+    landing_dt: 0.1 # s
+    landing_complete_height: 0.1 # m
+
+    # TOPIC BUFFER PARAMS
+    traj_server: 'nonlinear_trajectory_request'
+    odom_topic: '/uav1/odometry' 
+    target_topic: '/target'
+    tag_topic: '/aruco_single/pose'
+    use_tag: true
+
+    # PICKUP TASK PARAMS
+    # all in m/s
+    max_translation_speed: 0.2
+    pickup_descent_velocity: -0.2
+    pickup_ascent_velocity: 0.3
+
+    pickup_done_height: 1.0
+
+    lower_height_threshold: 0.7
+
+    landed_height: 0.35
+
+    pickup_target_pid_settings:
+        x_terms:
+            kp: 0.4
+            ki: 0.0
+            kd: 0.0
+            accumulator_max: 10.0
+            accumulator_min: -10.0
+            accumulator_enable_threshold: 10.0
+        y_terms:
+            kp: 0.4
+            ki: 0.0
+            kd: 0.0
+            accumulator_max: 10.0
+            accumulator_min: -10.0
+            accumulator_enable_threshold: 10.0

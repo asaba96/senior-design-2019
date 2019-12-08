@@ -1,0 +1,226 @@
+# For parameter descriptions, please refer to the template parameter files for each node.
+
+ekf_se_odom:
+  frequency: 30
+  sensor_timeout: 0.1
+  two_d_mode: false
+  transform_time_offset: 0.0
+  transform_timeout: 0.0
+  print_diagnostics: true
+  debug: false
+
+  map_frame: map
+  odom_frame: odom
+  base_link_frame: base_link
+  world_frame: odom
+
+  odom0: front_track_camera/odom/sample
+  odom0_config: [false, false, false,
+                 true, true, true,
+                 true,  true,  false,
+                 false, false, false,
+                 false, false, false]
+  odom0_queue_size: 500
+  odom0_nodelay: false 
+  odom0_differential: true 
+  odom0_relative: false
+  odom0_pose_rejection_threshold: 5
+  odom0_twist_rejection_threshold: 2
+
+  pose0: altimeter
+  pose0_config: [false, false, true,
+                 false, false, false,
+                 false, false, false,
+                 false, false, false,
+                 false, false, false]
+  pose0_differential: false
+  pose0_relative: false
+  pose0_queue_size: 500
+  pose0_rejection_threshold: 3  # Note the difference in parameter name
+  pose0_nodelay: false
+
+  pose1: pose/filtered
+  pose1_config: [true, true, false,
+                 true, true, true,
+                 false, false, false,
+                 false, false, false,
+                 false, false, false]
+  pose1_differential: false
+  pose1_relative: true
+  pose1_queue_size: 500
+  pose1_rejection_threshold: 3  # Note the difference in parameter name
+  pose1_nodelay: false
+
+
+  imu0: mavros/imu/data
+  imu0_config: [false, false, false,
+                false, false, false,
+                false, false, false,
+                true,  true,  true,
+                true,  true,  true]
+  imu0_nodelay: false
+  imu0_differential: false
+  imu0_relative: true
+  imu0_queue_size: 500
+  imu0_pose_rejection_threshold: 0.8                 # Note the difference in parameter names
+  imu0_twist_rejection_threshold: 0.8                #
+  imu0_linear_acceleration_rejection_threshold: 0.8  #
+  imu0_remove_gravitational_acceleration: true
+
+  use_control: false
+
+  process_noise_covariance: [0.05, 0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0.05, 0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0.06, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0.3,  0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0.3,  0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0.06, 0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0.025, 0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0.025, 0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0.04, 0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0.01, 0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.01, 0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.02  0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.01, 0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.01, 0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.015]
+
+  initial_estimate_covariance: [1e-9, 0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    1e-9, 0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    1e-9, 0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    1e-9, 0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    1e-9, 0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    1e-9, 0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    1e-9, 0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    1e-9, 0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    1e-9, 0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    1e-9,  0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     1e-9,  0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     1e-9,  0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     1e-9, 0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    1e-9, 0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1e-9]
+
+ekf_se_map:
+  frequency: 30
+  sensor_timeout: 0.1
+  two_d_mode: false
+  transform_time_offset: 0.0
+  transform_timeout: 0.0
+  print_diagnostics: true
+  debug: false
+
+  map_frame: map
+  odom_frame: odom
+  base_link_frame: base_link
+  world_frame: map
+
+  odom0: front_track_camera/odom/sample
+  odom0_config: [false, false, false,
+                 true, true, true,
+                 true,  true,  false,
+                 false, false, false,
+                 false, false, false]
+  odom0_queue_size: 500
+  odom0_nodelay: false 
+  odom0_differential: true 
+  odom0_relative: false
+  odom0_pose_rejection_threshold: 5
+  odom0_twist_rejection_threshold: 2
+  
+  odom1: odometry/gps
+  odom1_config: [true,  true,  false,
+                 false, false, false,
+                 false, false, false,
+                 false, false, false,
+                 false, false, false]
+  odom1_queue_size: 100
+  odom1_nodelay: true
+  odom1_differential: false
+  odom1_relative: true 
+  
+  pose0: altimeter
+  pose0_config: [false, false, true,
+                 false, false, false,
+                 false, false, false,
+                 false, false, false,
+                 false, false, false]
+  pose0_differential: false
+  pose0_relative: false
+  pose0_queue_size: 500
+  pose0_rejection_threshold: 3  # Note the difference in parameter name
+  pose0_nodelay: false
+
+  pose1: pose/filtered
+  pose1_config: [true, true, false,
+                 true, true, true,
+                 false, false, false,
+                 false, false, false,
+                 false, false, false]
+  pose1_differential: true
+  pose1_relative: true
+  pose1_queue_size: 500
+  pose1_rejection_threshold: 3  # Note the difference in parameter name
+  pose1_nodelay: false
+
+
+  imu0: mavros/imu/data
+  imu0_config: [false, false, false,
+                false, false, false,
+                false, false, false,
+                true,  true,  true,
+                true,  true,  true]
+  imu0_nodelay: false
+  imu0_differential: false
+  imu0_relative: true
+  imu0_queue_size: 500
+  imu0_pose_rejection_threshold: 0.8                 # Note the difference in parameter names
+  imu0_twist_rejection_threshold: 0.8                #
+  imu0_linear_acceleration_rejection_threshold: 0.8  #
+  imu0_remove_gravitational_acceleration: true
+
+  use_control: false
+
+  process_noise_covariance: [0.05, 0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0.05, 0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0.06, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0.3,  0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0.3,  0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0.06, 0,     0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0.025, 0,     0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0.025, 0,    0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0.04, 0,    0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0.01, 0,    0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.01, 0,    0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.02  0,    0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.01, 0,    0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.01, 0,
+                             0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.015]
+
+  initial_estimate_covariance: [1e-9, 0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    1e-9, 0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    1e-9, 0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    1e-9, 0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    1e-9, 0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    1e-9, 0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    1e-9, 0,    0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    1e-9, 0,    0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    1e-9, 0,     0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    1e-9,  0,     0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     1e-9,  0,     0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     1e-9,  0,    0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     1e-9, 0,    0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    1e-9, 0,
+                                0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1e-9]
+
+navsat_transform:
+  frequency: 30
+  delay: 3.0
+  magnetic_declination_radians: 0.0429351  # For lat/long 55.944831, -3.186998
+  yaw_offset: 1.570796327  # IMU reads 0 facing magnetic north, not east
+  zero_altitude: false
+  broadcast_utm_transform: true
+  publish_filtered_gps: true
+  use_odometry_yaw: false
+  wait_for_datum: false
+

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="platform" default="m1" doc="string representing the platform" />
+
+    <include if="$(eval str(arg('platform')) != 'rams_outdoor')"
+        file="$(find mbz2020_common)/launch/filters.launch"> 
+            <arg name="platform" value="$(arg platform)" />
+    </include>
+
+    <include if="$(eval str(arg('platform')) == 'rams_indoor')"
+        file="$(find mbz2020_common)/launch/single_ekf.launch" >
+            <arg name="platform" value="$(arg platform)" />
+    </include>
+
+    <include if="$(eval str(arg('platform')) == 'rams_outdoor')"
+        file="$(find mbz2020_common)/launch/dual_ekf.launch" >
+            <arg name="platform" value="$(arg platform)" />
+    </include>
+
+</launch>
