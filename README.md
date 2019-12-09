@@ -28,3 +28,6 @@ object_detection_with_own_model - The code needed to run a visual test of the ne
 network. This also includes the localization algorithm.
 
 The neural network inference graphs are in the google drive linked with this project.
+
+# Testing Scipts 
+Inside of `scripts` is the demo program we used to demonstrate the end effector working, including being able to command a pickup, detect a pickup, and command a drop and stop. 
