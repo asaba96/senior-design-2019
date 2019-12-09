@@ -101,17 +101,17 @@ sudo apt-get install -y librealsense2-utils
 sudo apt-get install -y librealsense2-dev
 sudo apt-get install -y librealsense2-dbg
 
-cd ~/mbz2020_ws/
+cd ~/catkin_ws/
 
 # pull all the things
 git submodule update --init --recursive
 
 # clean and build
-cd ~/mbz2020_ws/
+cd ~/catkin_ws/
 rosdep install --from-paths src --ignore-src -r -y
 catkin clean --yes
 catkin build -DCMAKE_BUILD_TYPE=Release -DCATKIN_ENABLE_TESTING=False
 
 # source setup.bash file
-echo "source ~/mbz2020_ws/devel/setup.bash" >> ~/.bashrc && \
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc && \
     source ~/.bashrc;
